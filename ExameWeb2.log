@@ -1,0 +1,78 @@
+// Vetor para armazenar as cores
+let vetorCores = [];
+
+// Seleciona todos os nomes das cores na tabela da página
+document.querySelectorAll('table tr td:first-child').forEach(td => {
+    const cor = td.textContent.trim().toLowerCase(); // Obtém o texto e converte para minúsculas
+    vetorCores.push(cor);
+});
+
+// Adiciona as cores predefinidas
+const coresPredefinidas = [
+    "aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond",
+    "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral",
+    "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgray",
+    "darkgreen", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred",
+    "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkturquoise", "darkviolet", "deeppink",
+    "deepskyblue", "dimgray", "dodgerblue", "firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro",
+    "ghostwhite", "gold", "goldenrod", "gray", "green", "greenyellow", "honeydew", "hotpink", "indianred",
+    "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue",
+    "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgray", "lightgreen", "lightpink", "lightsalmon",
+    "lightseagreen", "lightskyblue", "lightslategray", "lightsteelblue", "lightyellow", "lime", "limegreen",
+    "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple",
+    "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred",
+    "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "navy", "oldlace", "olive",
+    "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise",
+    "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "purple",
+    "rebeccapurple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen",
+    "seashell", "sienna", "silver", "skyblue", "slateblue", "slategray", "snow", "springgreen", "steelblue",
+    "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "white", "whitesmoke", "yellow",
+    "yellowgreen"
+];
+
+// Combina as cores predefinidas com as da página (removendo duplicados)
+vetorCores = Array.from(new Set([...vetorCores, ...coresPredefinidas]));
+
+// Exibe o vetor completo no console
+console.log("Todas as cores:", vetorCores);
+
+VM671:37 Todas as cores: (141) ['aliceblue', 'antiquewhite', 'aqua', 'aquamarine', 'azure', 'beige', 'bisque', 'black', 'blanchedalmond', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue', 'chartreuse', 'chocolate', 'coral', 'cornflowerblue', 'cornsilk', 'crimson', 'cyan', 'darkblue', 'darkcyan', 'darkgoldenrod', 'darkgray', 'darkgreen', 'darkkhaki', 'darkmagenta', 'darkolivegreen', 'darkorange', 'darkorchid', 'darkred', 'darksalmon', 'darkseagreen', 'darkslateblue', 'darkslategray', 'darkturquoise', 'darkviolet', 'deeppink', 'deepskyblue', 'dimgray', 'dodgerblue', 'firebrick', 'floralwhite', 'forestgreen', 'fuchsia', 'gainsboro', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'greenyellow', 'honeydew', 'hotpink', 'indianred', 'indigo', 'ivory', 'khaki', 'lavender', 'lavenderblush', 'lawngreen', 'lemonchiffon', 'lightblue', 'lightcoral', 'lightcyan', 'lightgoldenrodyellow', 'lightgray', 'lightgreen', 'lightpink', 'lightsalmon', 'lightseagreen', 'lightskyblue', 'lightslategray', 'lightsteelblue', 'lightyellow', 'lime', 'limegreen', 'linen', 'magenta', 'maroon', 'mediumaquamarine', 'mediumblue', 'mediumorchid', 'mediumpurple', 'mediumseagreen', 'mediumslateblue', 'mediumspringgreen', 'mediumturquoise', 'mediumvioletred', 'midnightblue', 'mintcream', 'mistyrose', 'moccasin', 'navajowhite', 'navy', 'oldlace', 'olive', 'olivedrab', 'orange', …]
+undefined
+// Função para selecionar 10 cores aleatórias
+function selecionarCoresAleatorias(vetorCores) {
+    const coresAleatorias = [];
+    const totalCores = vetorCores.length;
+
+    while (coresAleatorias.length < 10) {
+        const indiceAleatorio = Math.floor(Math.random() * totalCores); // Escolhe um índice aleatório
+        const corSelecionada = vetorCores[indiceAleatorio];
+
+        // Garante que a mesma cor não seja selecionada mais de uma vez
+        if (!coresAleatorias.includes(corSelecionada)) {
+            coresAleatorias.push(corSelecionada);
+        }
+    }
+
+    return coresAleatorias;
+}
+
+// Testa a função com o vetor de cores
+const coresAleatorias = selecionarCoresAleatorias(vetorCores);
+
+// Exibe as 10 cores selecionadas no console
+console.log("10 cores aleatórias:", coresAleatorias);
+
+VM676:23 10 cores aleatórias: (10) ['gainsboro', 'darkslategray', 'yellowgreen', 'greenyellow', 'cadetblue', 'olivedrab', 'lightgreen', 'red', 'tomato', 'lavender']
+undefined
+// Função para selecionar uma cor aleatória das 10 cores aleatórias
+function escolherCorAleatoria(coresAleatorias) {
+    const indiceAleatorio = Math.floor(Math.random() * coresAleatorias.length); // Escolhe um índice aleatório
+    const corAleatoria = coresAleatorias[indiceAleatorio]; // Obtém a cor selecionada
+    console.log("Cor aleatória escolhida:", corAleatoria); // Imprime a cor no console
+}
+
+// Testa a função com as 10 cores aleatórias
+escolherCorAleatoria(coresAleatorias);
+
+VM681:5 Cor aleatória escolhida: darkslategray
+undefined
